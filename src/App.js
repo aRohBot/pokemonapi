@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import {useState, useEffect} from 'react'
+import axios from 'axios'
 import './App.css';
 
 function App() {
@@ -7,12 +7,10 @@ function App() {
   const [pokemon,setPokemon] = useState([])
 
   useEffect(()=>{
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=807`)
-    .then((result)=>{
-      return result.json()
-    }).then((res)=>{
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=807`)
+    .then((res)=>{
       console.log(res)
-      setPokemon(res.results)
+      setPokemon(res.data.results)
     }).catch((error)=>{
       console.log(error)
     })
